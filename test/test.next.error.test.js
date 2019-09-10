@@ -1,28 +1,28 @@
 /* global describe, it, before, expect */
+/* eslint-disable no-shadow */
+'use strict';
 
-var Test = require('../lib/test');
+const Test = require('../lib/test');
 
-describe('test error middleware that calls next with error', function() {
-  
+describe('test error middleware that calls next with error', () => {
   function middleware(err, req, res, next) {
     next(err);
   }
-  
-  describe('with a next callback', function() {
-    var err;
-    
-    before(function(done) {
-      var test = new Test(middleware);
-      test.next(function(e) {
+
+  describe('with a next callback', () => {
+    let err;
+
+    before((done) => {
+      const test = new Test(middleware);
+      test.next((e) => {
         err = e;
         done();
       }).dispatch(new Error('whoops'));
     });
-    
-    it('should call next callback', function() {
+
+    it('should call next callback', () => {
       expect(err).to.be.an.instanceOf(Error);
       expect(err.message).to.equal('whoops');
     });
   });
-  
 });

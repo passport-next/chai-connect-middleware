@@ -1,16 +1,15 @@
 /* global describe, it, expect */
+'use strict';
 
-var Request = require('../lib/request');
+const Request = require('../lib/request');
 
-describe('Request', function() {
-  
-  var req = new Request();
-  
-  it('should be constructed with default properties', function() {
+describe('Request', () => {
+  const req = new Request();
+
+  it('should be constructed with default properties', () => {
     expect(Object.keys(req)).to.have.length(3);
     expect(req.method).to.equal('GET');
     expect(req.url).to.equal('/');
-    expect(req.headers).to.be.an.object;
+    expect(req.headers).to.be.an('object');
   });
-  
 });

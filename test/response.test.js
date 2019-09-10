@@ -1,57 +1,56 @@
 /* global describe, it, before, expect */
+'use strict';
 
-var Response = require('../lib/response');
+const Response = require('../lib/response');
 
-describe('Response', function() {
-  
-  describe('constructor', function() {
-    var res = new Response();
-  
-    it('should be constructed with default properties', function() {
+describe('Response', () => {
+  describe('constructor', () => {
+    const res = new Response();
+
+    it('should be constructed with default properties', () => {
       expect(Object.keys(res)).to.have.length(4);
       expect(res.statusCode).to.equal(200);
     });
   });
-  
-  describe('#setHeader', function() {
-    var res = new Response();
+
+  describe('#setHeader', () => {
+    const res = new Response();
     res.setHeader('Content-Type', 'application/json');
-  
-    it('should get set header', function() {
+
+    it('should get set header', () => {
       expect(res.getHeader('Content-Type')).to.equal('application/json');
     });
   });
-  
-  describe('#end', function() {
-    var res;
-  
-    before(function(done) {
-      res = new Response(function() {
+
+  describe('#end', () => {
+    let res;
+
+    before((done) => {
+      res = new Response(() => {
         process.nextTick(done);
       });
       res.end();
     });
-  
-    it('should get set status and not body', function() {
+
+    it('should get set status and not body', () => {
       expect(res.statusCode).to.equal(200);
-      expect(res.body).to.be.undefined;
+      expect(res.body).to.be.a('undefined');
     });
   });
-  
-  describe('#end with data', function() {
-    var res;
-  
-    before(function(done) {
-      res = new Response(function() {
+
+  describe('#end with data', () => {
+    let res;
+
+    before((done) => {
+      res = new Response(() => {
         process.nextTick(done);
       });
       res.end('Hello');
     });
-  
-    it('should get set status and body', function() {
+
+    it('should get set status and body', () => {
       expect(res.statusCode).to.equal(200);
       expect(res.body).to.equal('Hello');
     });
   });
-  
 });
