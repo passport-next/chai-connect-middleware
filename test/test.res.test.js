@@ -1,33 +1,31 @@
 /* global describe, it, before, expect */
+/* eslint-disable no-shadow */
+'use strict';
 
-var Test = require('../lib/test');
+const Test = require('../lib/test');
 
-describe('test middleware that prepares response', function() {
-  
-  function middleware(req, res, next) {
+describe('test middleware that prepares response', () => {
+  function middleware(req, res) {
     res.end();
   }
-  
-  describe('sync', function() {
-    
-    describe('and dispatches', function() {
-      var pres, eres;
-    
-      before(function(done) {
-        var test = new Test(middleware);
-        test.res(function(res) {
+
+  describe('sync', () => {
+    describe('and dispatches', () => {
+      let pres, eres;
+
+      before((done) => {
+        const test = new Test(middleware);
+        test.res((res) => {
           pres = res;
-        }).end(function(r) {
+        }).end((r) => {
           eres = r;
           done();
         }).dispatch();
       });
-    
-      it('should get same response from preparation and end', function() {
+
+      it('should get same response from preparation and end', () => {
         expect(pres).to.be.equal(eres);
       });
     });
-    
   });
-  
 });

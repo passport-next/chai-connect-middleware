@@ -1,19 +1,22 @@
 {
-    "name": "@passport-next/chai-connect-middleware",
+    "name": "{{npmModule}}",
     "version": "1.0.0",
-    "description": "Helpers for testing Connect middleware with the Chai assertion library.",
+    "description": "{{description}}",
     "author": {
         "name": "Passport Next Developers",
         "url": "https://github.com/orgs/passport-next/people"
     },
-    "homepage": "https://github.com/passport-next/chai-connect-middleware",
+    "homepage": "{{github}}",
     "contributors": [],
     "bugs": {
-        "url": "https://github.com/passport-next/chai-connect-middleware/issues"
+        "url": "{{github}}/issues"
     },
-    "dependencies": {},
+    "dependencies": {
+    },
     "devDependencies": {
         "@mysticatea/eslint-plugin": "^11.0.0",
+        "@passport-next/chai-connect-middleware": "1.x.x",
+        "@passport-next/chai-passport-strategy": "1.x.x",
         "@passport-next/eslint-config-passport-next": "^2.0.0",
         "chai": "4.x.x",
         "coveralls": "^3.0.6",
@@ -51,15 +54,14 @@
     "main": "./lib",
     "repository": {
         "type": "git",
-        "url": "https://github.com/passport-next/chai-connect-middleware"
+        "url": "{{github}}"
     },
     "scripts": {
         "templates": "node ./templates/gen.js",
         "init-new-project": "node ./templates/gen --init",
         "lint": "eslint --max-warnings 0 --ext js,md .",
         "lintfix": "eslint --ext js,md . --fix",
-        "testonly": "mocha --reporter spec --require test/bootstrap/node test/*.test.js test/**/*.test.js",
-        "test": "nyc --report-dir=var/coverage --reporter=lcov --reporter=text npm run testonly",
+        "test": "nyc --report-dir=var/coverage --reporter=lcov --reporter=text npm test",
         "coveralls": "nyc report --report-dir=var/coverage --reporter=text-lcov | coveralls"
     }
 }

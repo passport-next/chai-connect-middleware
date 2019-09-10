@@ -1,9 +1,13 @@
 CONTRIBUTING.md
-Makefile
 docs/
+.DS_Store
+.eslintignore
+.eslintrc.js
 examples/
-reports/
+.github/
+.gitlab-ci.yml
+.nyc_output
+templates
 test/
-
-.jshintrc
 .travis.yml
+var/

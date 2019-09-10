@@ -1,11 +1,10 @@
 /* global describe, it, expect */
+'use strict';
 
-var connect = require('..');
+const connect = require('..');
 
-describe('chai-connect-middleware', function() {
-  
-  it('should export function', function() {
+describe('chai-connect-middleware', () => {
+  it('should export function', () => {
     expect(connect).to.be.a('function');
   });
-  
 });

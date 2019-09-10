@@ -1,88 +1,84 @@
 /* global describe, it, before, expect */
+/* eslint-disable no-shadow */
+'use strict';
 
-var Test = require('../lib/test');
+const Test = require('../lib/test');
 
-describe('test middleware that prepares request', function() {
-  
-  function middleware(req, res, next) {
+describe('test middleware that prepares request', () => {
+  function middleware(req, res) {
     res.end(req.query.hello);
   }
-  
-  describe('sync', function() {
-    
-    describe('and dispatches', function() {
-      var res;
-    
-      before(function(done) {
-        var test = new Test(middleware);
-        test.req(function(req) {
+
+  describe('sync', () => {
+    describe('and dispatches', () => {
+      let res;
+
+      before((done) => {
+        const test = new Test(middleware);
+        test.req((req) => {
           req.query = {};
           req.query.hello = 'World';
-        }).end(function(r) {
+        }).end((r) => {
           res = r;
           done();
         }).dispatch();
       });
-      
-      it('should not have Express extensions', function() {
-        expect(res.redirect).to.be.undefined;
+
+      it('should not have Express extensions', () => {
+        expect(res.redirect).to.be.a('undefined');
       });
-    
-      it('should call end callback', function() {
+
+      it('should call end callback', () => {
         expect(res.statusCode).to.be.equal(200);
         expect(res.body).to.be.equal('World');
       });
     });
-    
-    describe('and dispatches with Express extensions', function() {
-      var res;
-    
-      before(function(done) {
-        var test = new Test('express', middleware);
-        test.req(function(req) {
+
+    describe('and dispatches with Express extensions', () => {
+      let res;
+
+      before((done) => {
+        const test = new Test('express', middleware);
+        test.req((req) => {
           req.query = {};
           req.query.hello = 'World';
-        }).end(function(r) {
+        }).end((r) => {
           res = r;
           done();
         }).dispatch();
       });
-      
-      it('should have Express extensions', function() {
+
+      it('should have Express extensions', () => {
         expect(res.redirect).to.be.a('function');
       });
-    
-      it('should call end callback', function() {
+
+      it('should call end callback', () => {
         expect(res.statusCode).to.be.equal(200);
         expect(res.body).to.be.equal('World');
       });
     });
-    
   });
-  
-  describe('async', function() {
-    
-    describe('and dispatches', function() {
-      var res;
-    
-      before(function(done) {
-        var test = new Test(middleware);
-        test.req(function(req, done) {
+
+  describe('async', () => {
+    describe('and dispatches', () => {
+      let res;
+
+      before((done) => {
+        const test = new Test(middleware);
+        test.req((req, done) => {
           req.query = {};
           req.query.hello = 'Async World';
           process.nextTick(done);
-        }).end(function(r) {
+        }).end((r) => {
           res = r;
           done();
         }).dispatch();
       });
-    
-      it('should call end callback', function() {
+
+      it('should call end callback', () => {
         expect(res.statusCode).to.be.equal(200);
         expect(res.body).to.be.equal('Async World');
       });
     });
-    
   });
-  
 });
