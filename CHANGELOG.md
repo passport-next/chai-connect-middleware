@@ -8,6 +8,12 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
+# 1.0.1
+
+### Patch
+
+* Updated npm deps @rwky
+
 # 1.0.0
 
 ### Major
