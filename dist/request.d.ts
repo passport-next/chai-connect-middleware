@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow -- Convenient */
 /**
  * Creates an instance of `Request`.
  *
@@ -8,12 +7,11 @@
  * @class
  * @protected
  */
-class Request {
-  method = 'GET';
-  url = '/';
-  headers = {};
+declare class Request {
+    method: string;
+    url: string;
+    headers: {};
 }
-
 /**
  * Expose `Request`.
  */

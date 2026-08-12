@@ -1,23 +1,33 @@
-/* global describe, it, before, expect */
-/* eslint-disable no-shadow */
-'use strict';
-
-const Test = require('../lib/test');
+/* eslint-disable no-shadow -- Convenient */
+import { expect } from 'chai';
+import Test from '../lib/test.js';
 
 describe('test middleware that prepares request', () => {
+  /**
+   * @typedef {import('../lib/request.js').default & {
+   *   query?: {hello: string}
+   * }} RequestWithHello
+   */
+  /**
+   * @type {(
+   *   req: RequestWithHello,
+   *   res: import('../lib/response.js').default,
+   *   next: (error?: Error) => void
+   * ) => void}
+   */
   function middleware(req, res) {
-    res.end(req.query.hello);
+    res.end(req?.query?.hello);
   }
 
   describe('sync', () => {
     describe('and dispatches', () => {
+      /** @type {import('../lib/response.js').default} */
       let res;
 
       before((done) => {
         const test = new Test(middleware);
-        test.req((req) => {
-          req.query = {};
-          req.query.hello = 'World';
+        test.req((/** @type {RequestWithHello} */ req) => {
+          req.query = { hello: 'World' };
         }).end((r) => {
           res = r;
           done();
@@ -25,7 +35,7 @@ describe('test middleware that prepares request', () => {
       });
 
       it('should not have Express extensions', () => {
-        expect(res.redirect).to.be.a('undefined');
+        expect('redirect' in res).to.equal(false);
       });
 
       it('should call end callback', () => {
@@ -35,13 +45,13 @@ describe('test middleware that prepares request', () => {
     });
 
     describe('and dispatches with Express extensions', () => {
+      /** @type {import('../lib/response.js').default} */
       let res;
 
       before((done) => {
         const test = new Test('express', middleware);
-        test.req((req) => {
-          req.query = {};
-          req.query.hello = 'World';
+        test.req((/** @type {RequestWithHello} */ req) => {
+          req.query = { hello: 'World' };
         }).end((r) => {
           res = r;
           done();
@@ -49,7 +59,7 @@ describe('test middleware that prepares request', () => {
       });
 
       it('should have Express extensions', () => {
-        expect(res.redirect).to.be.a('function');
+        expect('redirect' in res && res.redirect).to.be.a('function');
       });
 
       it('should call end callback', () => {
@@ -61,14 +71,17 @@ describe('test middleware that prepares request', () => {
 
   describe('async', () => {
     describe('and dispatches', () => {
+      /** @type {import('../lib/response.js').default} */
       let res;
 
       before((done) => {
         const test = new Test(middleware);
-        test.req((req, done) => {
-          req.query = {};
-          req.query.hello = 'Async World';
-          process.nextTick(done);
+        test.req((
+          /** @type {RequestWithHello} */ req,
+          /** @type {() => void} */ done
+        ) => {
+          req.query = { hello: 'Async World' };
+          queueMicrotask(done);
         }).end((r) => {
           res = r;
           done();

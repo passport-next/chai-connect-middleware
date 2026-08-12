@@ -1,15 +1,15 @@
-/* global describe, it, before, expect */
-/* eslint-disable no-shadow */
-'use strict';
-
-const Test = require('../lib/test');
+/* eslint-disable no-shadow -- Convenient */
+import { expect } from 'chai';
+import Test from '../lib/test.js';
 
 describe('test error middleware that calls next with error', () => {
+  /** @type {import('../lib/test.js').ChaiConnectMiddlewareWithError} */
   function middleware(err, req, res, next) {
     next(err);
   }
 
   describe('with a next callback', () => {
+    /** @type {Error|undefined} */
     let err;
 
     before((done) => {
@@ -22,7 +22,7 @@ describe('test error middleware that calls next with error', () => {
 
     it('should call next callback', () => {
       expect(err).to.be.an.instanceOf(Error);
-      expect(err.message).to.equal('whoops');
+      expect(err?.message).to.equal('whoops');
     });
   });
 });

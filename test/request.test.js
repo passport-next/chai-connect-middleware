@@ -1,7 +1,6 @@
-/* global describe, it, expect */
-'use strict';
-
-const Request = require('../lib/request');
+/* eslint-disable no-shadow -- Convenient */
+import { expect } from 'chai';
+import Request from '../lib/request.js';
 
 describe('Request', () => {
   const req = new Request();
