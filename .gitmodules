@@ -1,3 +1,0 @@
-[submodule "eslint-config-passport-next"]
-	path = eslint-config-passport-next
-	url = ../eslint-config-passport-next/

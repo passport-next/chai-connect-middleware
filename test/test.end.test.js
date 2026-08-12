@@ -1,15 +1,15 @@
-/* global describe, it, before, expect */
-/* eslint-disable no-shadow */
-'use strict';
-
-const Test = require('../lib/test');
+/* eslint-disable no-shadow -- Convenient */
+import { expect } from 'chai';
+import Test from '../lib/test.js';
 
 describe('test middleware that calls end', () => {
+  /** @type {import('../lib/test.js').ChaiConnectMiddlewareNoError} */
   function middleware(req, res) {
     res.end('Hello');
   }
 
   describe('with an end callback', () => {
+    /** @type {import('../lib/response.js').default} */
     let res;
 
     before((done) => {

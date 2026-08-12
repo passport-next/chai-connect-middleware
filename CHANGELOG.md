@@ -1,3 +1,5 @@
+# CHANGES for chai-connect-middleware
+
 This changelog follows Semantic Versioning https://semver.org/
 
 # UNRELEASED
@@ -8,13 +10,30 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
-# 1.0.1
+# 2.0.0
+
+### Major
+
+- feat: native ESM only and typescript
+- chore: require Node ^22.22.2 || >=24.15.0
+
+### Minor
+
+### Patch
+
+- refactor: switch to ES classes
+- chore: update devDeps.
+- chore: use pnpm
+- chore: add editorconfig
+- chore: drop gitlab, gitmodules, jshint, travis, Makefile
+
+## 1.0.1
 
 ### Patch
 
 * Updated npm deps @rwky
 
-# 1.0.0
+## 1.0.0
 
 ### Major
 

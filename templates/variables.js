@@ -1,5 +1,4 @@
-'use strict';
-module.exports = {
+export default {
   projectName: 'Passport-Next/chai-connect-middleware',
   description: 'Helpers for testing Connect middleware with the Chai assertion library.',
   npmModule: '@passport-next/chai-connect-middleware',
