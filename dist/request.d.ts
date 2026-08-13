@@ -1,3 +1,5 @@
+/** @import {ConnectRequest} from '@passport-next/http-types' */
+import type { ConnectRequest } from '@passport-next/http-types';
 /**
  * Creates an instance of `Request`.
  *
@@ -6,11 +8,13 @@
  *
  * @class
  * @protected
+ * @implements {ConnectRequest}
  */
-declare class Request {
+declare class Request implements ConnectRequest {
     method: string;
     url: string;
-    headers: {};
+    /** @type {Record<string, import('@passport-next/http-types').HeaderValue>} */
+    headers: Record<string, import('@passport-next/http-types').HeaderValue>;
 }
 /**
  * Expose `Request`.

@@ -10,6 +10,16 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
+# 2.1.0
+
+### Major
+
+### Minor
+
+- chore: use `@passport-next/http-types` package
+
+### Patch
+
 # 2.0.0
 
 ### Major

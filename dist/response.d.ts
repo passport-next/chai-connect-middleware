@@ -1,3 +1,5 @@
+/** @import {ConnectResponse, ResponseHeaderValue} from '@passport-next/http-types' */
+import type { ConnectResponse, ResponseHeaderValue } from '@passport-next/http-types';
 export type ResponseCallback = () => void;
 /**
  * @typedef {() => void} ResponseCallback
@@ -10,8 +12,9 @@ export type ResponseCallback = () => void;
  *
  * @class
  * @protected
+ * @implements {ConnectResponse}
  */
-declare class Response {
+declare class Response implements ConnectResponse {
     #private;
     /** @type {string | undefined} */
     body: string | undefined;
@@ -22,20 +25,20 @@ declare class Response {
     constructor(cb?: ResponseCallback);
     /**
      * @param {string} name
-     * @returns {string}
+     * @returns {ResponseHeaderValue | undefined}
      */
-    getHeader(name: string): string;
+    getHeader(name: string): ResponseHeaderValue | undefined;
     /**
      * @param {string} name
-     * @param {string} value
+     * @param {ResponseHeaderValue} value
      * @returns {void}
      */
-    setHeader(name: string, value: string): void;
+    setHeader(name: string, value: ResponseHeaderValue): void;
     /**
-     * @param {string} [data]
+     * @param {unknown} [data]
      * @returns {void}
      */
-    end(data?: string): void;
+    end(data?: unknown): void;
 }
 /**
  * Expose `Response`.

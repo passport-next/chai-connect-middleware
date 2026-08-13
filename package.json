@@ -1,6 +1,6 @@
 {
   "name": "@passport-next/chai-connect-middleware",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
@@ -58,5 +58,8 @@
     "testonly": "mocha --reporter spec test/*.test.js test/**/*.test.js",
     "test": "c8 --report-dir=var/coverage --reporter=lcov --reporter=text npm run testonly",
     "coveralls": "c8 report --report-dir=var/coverage --reporter=text-lcov | coveralls"
+  },
+  "dependencies": {
+    "@passport-next/http-types": "^0.2.0"
   }
 }
