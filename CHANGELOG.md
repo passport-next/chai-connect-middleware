@@ -10,6 +10,17 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
+# 2.2.0
+
+### Major
+
+### Minor
+
+- feat: export Request and Response helpers
+
+### Patch
+
+
 # 2.1.0
 
 ### Major
