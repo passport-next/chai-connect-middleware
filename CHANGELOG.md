@@ -10,20 +10,19 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
-# 2.2.0
+# 2.2.1
 
-### Major
+### Patch
+
+- fix: ensure types are exported
+
+# 2.2.0
 
 ### Minor
 
 - feat: export Request and Response helpers
 
-### Patch
-
-
 # 2.1.0
-
-### Major
 
 ### Minor
 
@@ -37,8 +36,6 @@ This changelog follows Semantic Versioning https://semver.org/
 
 - feat: native ESM only and typescript
 - chore: require Node ^22.22.2 || >=24.15.0
-
-### Minor
 
 ### Patch
 
