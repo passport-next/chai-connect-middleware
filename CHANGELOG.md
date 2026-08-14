@@ -10,6 +10,20 @@ This changelog follows Semantic Versioning https://semver.org/
 
 ### Patch
 
+# 2.3.0
+
+### Minor
+
+- feat: Connect middleware and req() callbacks now use the extended request contract
+- feat: add augmentable RequestExtensions
+- feat: exported ./request-extensions as a type-only package subpath
+- feat: add consumer-style augmentation tests
+
+### Patch
+
+- docs: update README
+
+
 # 2.2.1
 
 ### Patch

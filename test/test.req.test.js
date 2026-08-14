@@ -4,13 +4,8 @@ import Test from '../lib/test.js';
 
 describe('test middleware that prepares request', () => {
   /**
-   * @typedef {import('../lib/request.js').default & {
-   *   query?: {hello: string}
-   * }} RequestWithHello
-   */
-  /**
    * @type {(
-   *   req: RequestWithHello,
+  *   req: import('../types/index.js').Request,
    *   res: import('../lib/response.js').default,
    *   next: (error?: Error) => void
    * ) => void}
@@ -26,7 +21,7 @@ describe('test middleware that prepares request', () => {
 
       before((done) => {
         const test = new Test(middleware);
-        test.req((/** @type {RequestWithHello} */ req) => {
+        test.req((req) => {
           req.query = { hello: 'World' };
         }).end((r) => {
           res = r;
@@ -50,7 +45,7 @@ describe('test middleware that prepares request', () => {
 
       before((done) => {
         const test = new Test('express', middleware);
-        test.req((/** @type {RequestWithHello} */ req) => {
+        test.req((req) => {
           req.query = { hello: 'World' };
         }).end((r) => {
           res = r;
@@ -77,7 +72,7 @@ describe('test middleware that prepares request', () => {
       before((done) => {
         const test = new Test(middleware);
         test.req((
-          /** @type {RequestWithHello} */ req,
+          /** @type {import('../types/index.js').Request} */ req,
           /** @type {() => void} */ done
         ) => {
           req.query = { hello: 'Async World' };

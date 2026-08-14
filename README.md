@@ -2,11 +2,7 @@
 
 Status:
 [![NPM version](https://img.shields.io/npm/v/@passport-next/chai-connect-middleware.svg)](https://www.npmjs.com/package/@passport-next/chai-connect-middleware)
-[![Build Status](https://travis-ci.org/passport-next/chai-connect-middleware.svg?branch=master)](https://travis-ci.org/passport-next/chai-connect-middleware)
 [![Coverage Status](https://coveralls.io/repos/github/passport-next/chai-connect-middleware/badge.svg?branch=master)](https://coveralls.io/github/passport-next/chai-connect-middleware?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5144b93fb618689b9486/maintainability)](https://codeclimate.com/github/passport-next/chai-connect-middleware/maintainability)
-[![Dependencies](https://david-dm.org/passport-next/chai-connect-middleware.png)](https://david-dm.org/passport-next/chai-connect-middleware)
-[![SAST](https://gitlab.com/passport-next/chai-connect-middleware/badges/master/pipeline.svg)](https://gitlab.com/passport-next/chai-connect-middleware)
 
 ## About
 
@@ -72,6 +68,34 @@ it('tests Express middleware', (done) => {
 });
 ```
 
+### TypeScript request extensions
+
+The package exports `Request` and `RequestExtensions` types. To describe fields
+that your tests add to the mock request, augment the type-only
+`@passport-next/chai-connect-middleware/request-extensions` module in a `.d.ts`
+file included by your TypeScript configuration:
+
+```ts
+import '@passport-next/chai-connect-middleware/request-extensions';
+
+declare module '@passport-next/chai-connect-middleware/request-extensions' {
+  interface RequestExtensions {
+    user?: {name: string};
+    session?: Record<string, unknown>;
+  }
+}
+```
+
+The added fields are then available on the request passed to middleware and
+`test.req()` callbacks. The composed request type can also be imported directly:
+
+```ts
+import type {Request} from '@passport-next/chai-connect-middleware';
+```
+
+`RequestExtensions` is empty by default and affects types only; the test remains
+responsible for initializing any extended fields it uses.
+
 ## Docs
 
 [Please see the wiki](https://github.com/passport-next/chai-connect-middleware/wiki)
@@ -82,7 +106,7 @@ Please raise an [issue](https://github.com/passport-next/chai-connect-middleware
 
 ## Support policy
 
-We support all [node versions](https://github.com/nodejs/Release) supported by the Node Foundation
+This package supports Node.js `^22.22.2` or `>=24.15.0`.
 
 
 

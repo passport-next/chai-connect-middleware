@@ -1,7 +1,11 @@
 import type Test from '../dist/test.js';
 import type { ChaiConnectMiddleware } from '../dist/test.js';
+import type { RequestExtensions } from '../request-extensions.js';
 
-export type Request = import('../dist/request.js').default;
+export type { RequestExtensions } from '../request-extensions.js';
+
+export type Request =
+  import('../dist/request.js').default & RequestExtensions;
 export type Response = import('../dist/response.js').default;
 
 declare global {

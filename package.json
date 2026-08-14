@@ -1,11 +1,16 @@
 {
   "name": "@passport-next/chai-connect-middleware",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
-    "types": "./types/index.d.ts",
-    "default": "./lib/index.js"
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./request-extensions": {
+      "types": "./request-extensions.d.ts"
+    }
   },
   "description": "Helpers for testing Connect middleware with the Chai assertion library.",
   "author": {

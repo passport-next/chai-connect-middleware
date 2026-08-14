@@ -1,22 +1,27 @@
-export type ChaiConnectMiddlewareNoError = import('@passport-next/http-types').Middleware<import('./request.js').default, import('./response.js').default>;
-export type ChaiConnectMiddlewareWithError = (err: Error, req: import('./request.js').default, res: import('./response.js').default, next: import('@passport-next/http-types').NextFunction) => void;
+export type ChaiConnectRequest = import('./request.js').default & import('../request-extensions.js').RequestExtensions;
+export type ChaiConnectMiddlewareNoError = import('@passport-next/http-types').Middleware<ChaiConnectRequest, import('./response.js').default>;
+export type ChaiConnectMiddlewareWithError = (err: Error, req: ChaiConnectRequest, res: import('./response.js').default, next: import('@passport-next/http-types').NextFunction) => void;
 export type ChaiConnectMiddleware = ChaiConnectMiddlewareNoError | ChaiConnectMiddlewareWithError;
-export type SyncRequestCallback = (req: import('./request.js').default) => void;
-export type AsyncRequestCallback = (req: import('./request.js').default, done: () => void) => void;
+export type SyncRequestCallback = (req: ChaiConnectRequest) => void;
+export type AsyncRequestCallback = (req: ChaiConnectRequest, done: () => void) => void;
 export type RequestCallback = SyncRequestCallback | AsyncRequestCallback;
 export type ResponseCallback = (res: import('./response.js').default) => void;
 export type EndCallback = (res: import('./response.js').default) => void;
 export type NextCallback = (err?: Error) => void;
 /**
+ * @typedef {import('./request.js').default &
+ *   import('../request-extensions.js').RequestExtensions} ChaiConnectRequest
+ */
+/**
  * @typedef {import('@passport-next/http-types').Middleware<
- *   import('./request.js').default,
+ *   ChaiConnectRequest,
  *   import('./response.js').default
  * >} ChaiConnectMiddlewareNoError
  */
 /**
  * @typedef {(
  *   err: Error,
- *   req: import('./request.js').default,
+ *   req: ChaiConnectRequest,
  *   res: import('./response.js').default,
  *   next: import('@passport-next/http-types').NextFunction
  * ) => void} ChaiConnectMiddlewareWithError
@@ -26,12 +31,12 @@ export type NextCallback = (err?: Error) => void;
  */
 /**
  * @typedef {(
- *   req: import('./request.js').default
+ *   req: ChaiConnectRequest
  * ) => void} SyncRequestCallback
  */
 /**
  * @typedef {(
- *   req: import('./request.js').default,
+ *   req: ChaiConnectRequest,
  *   done: () => void
  * ) => void} AsyncRequestCallback
  */
