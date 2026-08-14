@@ -5,7 +5,7 @@ import Test from '../lib/test.js';
 describe('test middleware that prepares request', () => {
   /**
    * @type {(
-  *   req: import('../types/index.js').Request,
+   *   req: import('../types/index.js').Request,
    *   res: import('../lib/response.js').default,
    *   next: (error?: Error) => void
    * ) => void}
